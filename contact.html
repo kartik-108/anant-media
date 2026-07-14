@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start a Conversation | Anant Media</title>
+<meta name="description" content="Tell Anant Media about the idea you can't ignore. No form, no funnel — just the beginning of a conversation.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Neue+Montreal:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/inner-pages.css">
+<link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="page-curtain" id="page-curtain" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-outline" id="cursor-outline" aria-hidden="true"><span id="cursor-text"></span></div>
+
+<header class="nav" id="site-nav">
+  <a href="index.html" class="nav-logo" data-cursor="">ANANT&nbsp;MEDIA</a>
+  <span class="nav-context">OPEN CHANNEL</span>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-bg"></div>
+  <ul class="mobile-links">
+    <li><a href="index.html" data-index="01"><span class="mm-num">01</span> HOME</a></li>
+    <li><a href="khwaab.html" data-index="02"><span class="mm-num">02</span> KHWAAB</a></li>
+    <li><a href="read-khwaab.html" data-index="03"><span class="mm-num">03</span> READ</a></li>
+    <li><a href="photography.html" data-index="04"><span class="mm-num">04</span> PHOTOGRAPHY</a></li>
+    <li><a href="lab.html" data-index="05"><span class="mm-num">05</span> LAB</a></li>
+    <li><a href="contact.html" data-index="06"><span class="mm-num">06</span> CONTACT</a></li>
+  </ul>
+</div>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="contact-hero">
+    <span class="contact-eyebrow" data-split>ANANT MEDIA / OPEN CHANNEL</span>
+    <h1 class="contact-heading" data-split-lines>LET'S TALK<br>ABOUT THE IDEA<br>YOU CAN'T IGNORE.</h1>
+    <p class="contact-lead" data-split-lines>It doesn't need to be finished.<br>It only needs to exist.</p>
+  </section>
+
+  <!-- ============ METADATA ============ -->
+  <dl class="meta-grid contact-meta reveal">
+    <div><dt>CHANNEL</dt><dd>OPEN</dd></div>
+    <div><dt>RESPONSE</dt><dd>AS SOON AS POSSIBLE</dd></div>
+    <div><dt>BASED</dt><dd>INDIA</dd></div>
+  </dl>
+
+  <!-- ============ CONVERSATION INTERFACE ============ -->
+  <section class="idea-form-section">
+    <form class="idea-form" id="idea-form" novalidate>
+
+      <div class="idea-field">
+        <label for="idea-name">YOUR NAME</label>
+        <input type="text" id="idea-name" name="name" autocomplete="name">
+        <span class="idea-field-error" id="idea-name-error" aria-live="polite"></span>
+      </div>
+
+      <div class="idea-field">
+        <label for="idea-email">EMAIL</label>
+        <input type="email" id="idea-email" name="email" autocomplete="email">
+        <span class="idea-field-error" id="idea-email-error" aria-live="polite"></span>
+      </div>
+
+      <div class="idea-field">
+        <label id="idea-category-label">WHERE DOES YOUR IDEA BELONG?</label>
+        <div class="idea-pills" role="group" aria-labelledby="idea-category-label">
+          <button type="button" class="idea-pill" aria-pressed="false" data-value="STORY">STORY</button>
+          <button type="button" class="idea-pill" aria-pressed="false" data-value="VISUAL">VISUAL</button>
+          <button type="button" class="idea-pill" aria-pressed="false" data-value="AI FILM">AI FILM</button>
+          <button type="button" class="idea-pill" aria-pressed="false" data-value="DIGITAL EXPERIENCE">DIGITAL EXPERIENCE</button>
+          <button type="button" class="idea-pill" aria-pressed="false" data-value="EXPERIMENT">EXPERIMENT</button>
+          <button type="button" class="idea-pill" aria-pressed="false" data-value="SOMETHING ELSE">SOMETHING ELSE</button>
+        </div>
+        <input type="hidden" id="idea-category" name="category" value="">
+      </div>
+
+      <div class="idea-field">
+        <label for="idea-message">TELL ME ABOUT THE IDEA.</label>
+        <textarea id="idea-message" name="message" placeholder="It can be messy. Start anywhere." rows="5"></textarea>
+        <span class="idea-field-error" id="idea-message-error" aria-live="polite"></span>
+      </div>
+
+<div class="idea-field">
+  <label for="idea-reference">
+    LINK / REFERENCE <span class="optional-label">(optional)</span>
+  </label>
+
+  <input
+    type="text"
+    id="idea-reference"
+    name="reference"
+    placeholder="A deck, image, film, mood, or unfinished thought."
+  >
+</div>
+
+      <div class="form-submit-row">
+        <button type="submit" class="btn btn--filled btn--large magnetic" data-cursor="TALK">START THE CONVERSATION</button>
+        <span class="channel-status" id="channel-status" aria-live="polite"></span>
+      </div>
+
+    </form>
+  </section>
+
+  <!-- ============ ENDING ============ -->
+  <section class="contact-ending">
+    <h2 data-split-lines>GOOD IDEAS<br>DON'T ALWAYS<br>ARRIVE FINISHED.</h2>
+    <p class="contact-ending-serif" data-split>That's why conversations exist.</p>
+    <div class="contact-ending-brand">
+      <span class="contact-ending-logo">ANANT MEDIA</span>
+      <span class="contact-ending-tagline">STORIES. FRAMES. IDEAS. WITHOUT END.</span>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grain" aria-hidden="true"></div>
+  <h2 class="footer-word">ANANT</h2>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <p>ANANT MEDIA</p>
+      <p>INFINITE IDEAS.<br>INFINITE STORIES.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="khwaab.html">Khwaab</a>
+      <a href="photography.html">Photography</a>
+      <a href="lab.html">Lab</a>
+    </nav>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/_k.vrx/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://www.linkedin.com/in/karthikvijayofficial/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/kartik-108" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ANANT MEDIA</span>
+    <span>CREATIVITY HAS NO FINAL FRAME.</span>
+    <span>MADE WITH CURIOSITY.</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/inner-pages.js"></script>
+<script src="js/contact.js"></script>
+</body>
+</html>

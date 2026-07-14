@@ -1,0 +1,15 @@
+{
+  "name": "anant-media",
+  "version": "1.0.0",
+  "description": "A dark, cinematic, single-page site for Anant Media, built with plain HTML/CSS/JS plus Three.js, GSAP + ScrollTrigger, and Lenis (all loaded from CDN, no build step, no framework).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "resend": "^6.17.2"
+  }
+}

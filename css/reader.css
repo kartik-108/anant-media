@@ -1,0 +1,167 @@
+/* =========================================================
+   ANANT MEDIA — READER (read-khwaab.html only)
+   Isolated from style.css / inner-pages.css. Reuses the same
+   tokens (--black-deep, --white, --silver, --font-display,
+   --font-serif, --ease-cinematic/--ease-soft, --nav-h) but
+   defines its own shapes: the intro overlay, the reading
+   stage, the pill-shaped control bar, and the progress line.
+   ========================================================= */
+
+/* ---------- Intro overlay ----------
+   Sits above the reader stage, fades itself out once the
+   short "ANANT STORIES PRESENTS -> KHWAAB" reveal finishes. */
+.reader-intro{
+  position:fixed;inset:0;
+  z-index:9600;
+  background:var(--black-deep);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:0 6vw;
+}
+.reader-intro-eyebrow{
+  font-size:0.72rem;letter-spacing:0.3em;color:var(--silver);
+  margin-bottom:1.4rem;text-transform:uppercase;opacity:0;
+}
+.reader-intro-title{
+  font-size:clamp(3rem,13vw,8rem);
+  font-weight:500;line-height:0.9;margin:0;
+  letter-spacing:-0.01em;opacity:0;
+}
+.reader-intro-subtitle{
+  font-size:0.75rem;letter-spacing:0.3em;color:var(--silver);
+  margin:1.1rem 0 0;text-transform:uppercase;opacity:0;
+}
+.reader-intro-line{
+  margin:2.4rem 0 0;
+  font-family:var(--font-serif);font-style:italic;font-weight:400;
+  font-size:clamp(0.95rem,1.8vw,1.2rem);
+  color:var(--silver);max-width:32ch;line-height:1.6;opacity:0;
+}
+
+/* ---------- Reading stage ---------- */
+.reader-stage{
+  position:relative;
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:calc(var(--nav-h) + 2rem) 4vw 2.5rem;
+  opacity:0;
+}
+
+.reader-canvas-zone{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  flex:1;min-height:0;
+}
+.reader-canvas-frame{
+  position:relative;
+  width:100%;
+  max-width:min(78vw,760px);
+  max-height:76vh;
+  aspect-ratio:2/3;
+  background:radial-gradient(ellipse at center, #121116 0%, #050505 78%);
+  border:1px solid rgba(255,255,255,0.07);
+  box-shadow:0 60px 120px -30px rgba(0,0,0,0.8);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+#reader-canvas{
+  max-width:100%;
+  max-height:100%;
+  width:auto;
+  height:auto;
+}
+.reader-loading{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.7rem;letter-spacing:0.22em;color:var(--silver);
+  text-transform:uppercase;
+}
+.reader-loading[hidden]{display:none;}
+
+.reader-fallback{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;
+  text-align:center;padding:2rem;
+}
+.reader-fallback[hidden]{display:none;}
+.reader-fallback-title{
+  font-family:var(--font-serif);font-style:italic;font-weight:400;
+  font-size:clamp(1.2rem,2.4vw,1.6rem);margin:0;
+}
+.reader-fallback-sub{font-size:0.85rem;color:var(--silver);margin:0 0 0.5rem;}
+
+/* Invisible left/right click zones for previous/next */
+.reader-edge{
+  position:absolute;top:0;bottom:0;width:22%;
+  background:transparent;border:none;
+  cursor:none;
+  z-index:2;
+}
+.reader-edge--prev{left:0;}
+.reader-edge--next{right:0;}
+
+/* ---------- Control bar ---------- */
+.reader-controls{
+  display:flex;align-items:center;justify-content:center;
+  gap:2rem;flex-wrap:wrap;
+  width:fit-content;
+  margin:2.2rem auto 0;
+  padding:1rem 1.8rem;
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:100px;
+  background:rgba(8,8,10,0.55);
+  -webkit-backdrop-filter: blur();
+  backdrop-filter:blur(14px);
+  opacity:1;
+  transition:opacity .5s var(--ease-soft);
+}
+.reader-controls.is-idle{opacity:0.18;}
+.reader-btn{
+  font-family:var(--font-display);
+  font-size:0.66rem;
+  letter-spacing:0.16em;
+  color:var(--silver);
+  text-transform:uppercase;
+  background:none;border:none;
+  transition:color .3s;
+}
+.reader-btn:hover{color:var(--white);}
+.reader-btn:disabled{opacity:0.3;pointer-events:none;}
+.reader-count{
+  font-size:0.72rem;letter-spacing:0.1em;color:var(--white);
+  font-variant-numeric:tabular-nums;
+}
+
+/* ---------- Progress line ---------- */
+.reader-progress-line{
+  position:fixed;left:0;right:0;bottom:0;
+  height:1px;
+  background:rgba(255,255,255,0.08);
+  z-index:5;
+}
+.reader-progress-line span{
+  display:block;height:100%;width:0%;
+  background:var(--white);
+  transition:width .4s var(--ease-cinematic);
+}
+
+/* ---------- Ending credit line ---------- */
+.reader-ending-credit{
+  font-size:0.72rem;letter-spacing:0.15em;color:var(--silver-dim);
+  margin:1.2rem 0 0;text-transform:uppercase;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1024px){
+  .reader-canvas-frame{max-width:86vw;}
+}
+@media (max-width:768px){
+  .reader-stage{padding:calc(var(--nav-h) + 1.2rem) 3vw 2rem;}
+  .reader-canvas-frame{max-width:94vw;max-height:62vh;}
+  .reader-controls{gap:1.1rem;padding:0.85rem 1.2rem;}
+  .reader-edge{width:32%;}
+}
+@media (prefers-reduced-motion: reduce){
+  .reader-intro-eyebrow,.reader-intro-title,.reader-intro-subtitle,.reader-intro-line{opacity:1;}
+  .reader-stage{opacity:1;}
+}

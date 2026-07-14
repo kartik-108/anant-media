@@ -1,0 +1,184 @@
+/* =========================================================
+   ANANT MEDIA — CONTACT / "OPEN CHANNEL" (contact.html only)
+   Isolated from style.css / inner-pages.css. Reuses tokens
+   only (colors, fonts, easings, --nav-h); every shape here is
+   new because this page's typography and form language don't
+   exist anywhere else on the site yet.
+   ========================================================= */
+
+/* ---------- Ambient cursor-follow light ----------
+   Painted as part of body's own background (not an overlay
+   div), so it sits naturally behind every element with zero
+   z-index bookkeeping. Updated via --mx/--my custom
+   properties set in contact.js. Disabled on touch/reduced
+   motion by simply never being updated (falls back to the
+   50%/50% default, effectively static and unnoticeable). */
+body{
+  background:
+    radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.03), transparent 26%),
+    var(--black-base);
+}
+
+/* ---------- Hero ---------- */
+.contact-hero{
+  min-height:88vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:calc(var(--nav-h) + 3rem) 6vw 3rem;
+}
+.contact-eyebrow{
+  display:block;
+  font-size:0.72rem;letter-spacing:0.3em;color:var(--silver);
+  margin-bottom:1.6rem;text-transform:uppercase;
+}
+.contact-heading{
+  font-size:clamp(2.4rem,7.5vw,5.8rem);
+  font-weight:500;
+  line-height:1.08;
+  margin:0;
+  letter-spacing:-0.01em;
+}
+.contact-lead{
+  margin:2.2rem 0 0;
+  font-family:var(--font-serif);font-style:italic;font-weight:400;
+  font-size:clamp(1rem,2vw,1.3rem);
+  color:var(--silver);
+  max-width:32ch;
+  line-height:1.6;
+}
+
+/* ---------- Metadata row (reuses .meta-grid from style.css) ---------- */
+.contact-meta{
+  grid-template-columns:repeat(3,1fr);
+  max-width:640px;
+  margin:0 auto 4rem;
+  padding:0 6vw;
+}
+
+/* ---------- The conversation interface ---------- */
+.idea-form-section{padding:2rem 6vw 7rem;}
+.idea-form{max-width:680px;margin:0 auto;}
+
+.idea-field{position:relative;margin-bottom:3.2rem;}
+.idea-field label{
+  display:block;
+  font-size:0.68rem;letter-spacing:0.2em;color:var(--silver-dim);
+  margin-bottom:0.9rem;text-transform:uppercase;
+}
+.idea-field input,
+.idea-field textarea{
+  width:100%;
+  background:transparent;
+  border:none;
+  border-bottom:1px solid rgba(255,255,255,0.18);
+  color:var(--white);
+  font-family:var(--font-display);
+  font-size:1.1rem;
+  padding:0.7rem 0;
+  transition:border-color .35s var(--ease-soft);
+}
+.idea-field textarea{
+  resize:vertical;
+  min-height:130px;
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-size:1.3rem;
+  line-height:1.55;
+}
+.idea-field input:focus,
+.idea-field textarea:focus{outline:none;border-color:var(--white);}
+.idea-field input::placeholder,
+.idea-field textarea::placeholder{color:var(--silver-dim);}
+
+.idea-field-error{
+  display:block;
+  min-height:1.1em;
+  margin-top:0.7rem;
+  font-size:0.78rem;
+  color:var(--silver);
+  opacity:0;
+  transform:translateY(-4px);
+  transition:opacity .3s var(--ease-soft),transform .3s var(--ease-soft);
+}
+.idea-field-error.is-visible{opacity:1;transform:translateY(0);}
+
+/* ---------- Pill selector: "WHAT ARE WE CREATING?" ---------- */
+.idea-pills{
+  display:flex;flex-wrap:wrap;gap:0.7rem;
+}
+.idea-pill{
+  font-family:var(--font-display);
+  font-size:0.72rem;
+  letter-spacing:0.1em;
+  color:var(--silver);
+  padding:0.65rem 1.3rem;
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:100px;
+  background:transparent;
+  transition:background .3s var(--ease-soft),color .3s var(--ease-soft),border-color .3s;
+}
+.idea-pill:hover{border-color:rgba(255,255,255,0.4);color:var(--white);}
+.idea-pill[aria-pressed="true"]{
+  background:var(--white);
+  color:var(--black-deep);
+  border-color:var(--white);
+}
+
+.form-submit-row{
+  display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;
+  margin-top:1rem;
+}
+.channel-status{
+  font-size:0.72rem;
+  letter-spacing:0.18em;
+  color:var(--silver);
+  text-transform:uppercase;
+  opacity:0;
+  transition:opacity .3s var(--ease-soft);
+}
+.channel-status.is-visible{opacity:1;}
+
+/* ---------- Ending statement ---------- */
+.contact-ending{
+  min-height:70vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:6rem 6vw;
+}
+.contact-ending h2{
+  font-size:clamp(2.4rem,7vw,5.5rem);
+  font-weight:500;
+  line-height:1.08;
+  margin:0;
+  letter-spacing:-0.01em;
+}
+.contact-ending-serif{
+  margin:2rem 0 0;
+  font-family:var(--font-serif);font-style:italic;font-weight:400;
+  font-size:clamp(1.1rem,2.2vw,1.5rem);
+  color:var(--silver);
+}
+.contact-ending-brand{margin-top:4rem;}
+.contact-ending-logo{
+  display:block;
+  font-size:1.1rem;
+  letter-spacing:0.3em;
+  margin-bottom:0.6rem;
+}
+.contact-ending-tagline{
+  display:block;
+  font-size:0.72rem;
+  letter-spacing:0.2em;
+  color:var(--silver-dim);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:768px){
+  .contact-meta{grid-template-columns:1fr;gap:1.6rem;text-align:center;}
+  .idea-pills{justify-content:flex-start;}
+  .form-submit-row{flex-direction:column;align-items:flex-start;}
+}
+.optional-label {
+  text-transform: none;
+  letter-spacing: 0;
+}

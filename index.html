@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anant Media — Creativity Has No Final Frame</title>
+<meta name="description" content="Anant Media is an independent creative media brand exploring stories, visuals, technology and ideas without boundaries.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Neue+Montreal:wght@400;500&display=swap" rel="stylesheet">
+<!-- Fallback premium web-safe pairing in case Neue Montreal is unavailable via Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- ============ LOADER ============ -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-grain"></div>
+  <div class="loader-counter"><span id="loader-count">00</span></div>
+  <div class="loader-mark">
+    <svg viewBox="0 0 120 60" class="loader-infinity" width="120" height="60">
+      <path d="M30,30 C30,15 45,15 60,30 C75,45 90,45 90,30 C90,15 75,15 60,30 C45,45 30,45 30,30 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    </svg>
+  </div>
+  <div class="loader-word" id="loader-word">ANANT MEDIA</div>
+  <div class="loader-sub">IDEAS ARE INFINITE.</div>
+  <div class="loader-curtain" id="loader-curtain"></div>
+</div>
+
+<!-- ============ GRAIN OVERLAY ============ -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-outline" id="cursor-outline" aria-hidden="true"><span id="cursor-text"></span></div>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="nav" id="site-nav">  
+  <a href="#hero" class="nav-logo" data-cursor="">ANANT&nbsp;MEDIA</a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#stories" data-cursor="">ANANT</a>
+    <a href="#khwaab" data-cursor="">STORIES</a>
+    <a href="#visuals" data-cursor="">VISUALS</a>
+    <a href="#experiments" data-cursor="">EXPERIMENTS</a>
+    <a href="#about" data-cursor="">ABOUT</a>
+  </nav>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span>
+  </button>
+</header>
+
+<!-- ============ MOBILE MENU ============ -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-bg"></div>
+  <ul class="mobile-links">
+    <li><a href="#stories" data-index="01"><span class="mm-num">01</span> INDEX</a></li>
+    <li><a href="#khwaab" data-index="02"><span class="mm-num">02</span> STORIES</a></li>
+    <li><a href="#visuals" data-index="03"><span class="mm-num">03</span> VISUALS</a></li>
+    <li><a href="#experiments" data-index="04"><span class="mm-num">04</span> EXPERIMENTS</a></li>
+    <li><a href="#about" data-index="05"><span class="mm-num">05</span> ABOUT</a></li>
+  </ul>
+</div>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section id="hero" class="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <span class="hero-anant" data-split>ANANT</span>
+        <span class="hero-media" data-split>MEDIA</span>
+      </h1>
+      <p class="hero-tagline" data-split-lines>STORIES. FRAMES. IDEAS. WITHOUT END.</p>
+    </div>
+    <div class="scroll-indicator" aria-hidden="true">
+      <span class="scroll-line"></span>
+      <span class="scroll-text">SCROLL TO EXPLORE</span>
+    </div>
+  </section>
+
+  <!-- ============ INTRODUCTION ============ -->
+  <section id="intro" class="intro">
+    <div class="intro-lines">
+      <p class="intro-line" data-split-lines>WE DON'T CREATE<br>TO FILL THE FRAME.</p>
+      <p class="intro-line intro-line--serif" data-split-lines>WE CREATE<br>TO EXPAND IT.</p>
+    </div>
+    <p class="intro-paragraph" data-split-lines>Anant Media is an independent creative space exploring stories, visuals, technology, and ideas without boundaries.</p>
+    <div class="intro-orbit" aria-hidden="true">
+      <div class="orbit-track">
+        <span>INFINITE IDEAS&nbsp;•&nbsp;INFINITE STORIES&nbsp;•&nbsp;INFINITE PERSPECTIVES&nbsp;•&nbsp;</span>
+        <span>INFINITE IDEAS&nbsp;•&nbsp;INFINITE STORIES&nbsp;•&nbsp;INFINITE PERSPECTIVES&nbsp;•&nbsp;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED RELEASE: KHWAAB ============ -->
+  <section id="khwaab" class="khwaab">
+    <div class="khwaab-bg" id="khwaab-bg"></div>
+    <div class="khwaab-inner">
+      <span class="section-label">001 / FEATURED STORY</span>
+      <h2 class="khwaab-title" id="khwaab-title" data-split>KHWAAB</h2>
+      <p class="khwaab-subtitle">A GRAPHIC NOVEL</p>
+
+      <div class="khwaab-body">
+        <div class="khwaab-poster-wrap">
+          <div class="khwaab-poster" id="khwaab-poster" tabindex="0" data-media-frame>
+            <img class="media-img" data-media-image src="assets/projects/khwaab-poster.png" alt="KHWAAB graphic novel poster" loading="lazy" decoding="async">
+            <div class="poster-placeholder media-fallback">
+              <span>KHWAAB</span>
+              <small>LOADING...</small>
+            </div>
+            <div class="poster-shine"></div>
+          </div>
+        </div>
+
+        <div class="khwaab-meta">
+          <p class="khwaab-quote" data-split-lines>Some dreams are seen with closed eyes.<br>Others refuse to disappear when we wake.</p>
+
+          <dl class="meta-grid">
+            <div><dt>FORMAT</dt><dd>GRAPHIC NOVEL</dd></div>
+            <div><dt>YEAR</dt><dd>2026</dd></div>
+            <div><dt>STATUS</dt><dd>RELEASING ON 18th JULY 2026</dd></div>
+            <div><dt>CREATED BY</dt><dd>ANANT STORIES</dd></div>
+          </dl>
+
+          <div class="khwaab-buttons">
+            <a href="khwaab.html" class="btn btn--outline magnetic" data-cursor="VIEW">EXPLORE KHWAAB</a>
+            <a href="read-khwaab.html" class="btn btn--filled magnetic" data-cursor="VIEW">READ THE STORY</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="khwaab-strip" id="khwaab-strip">
+      <div class="strip-track" id="strip-track">
+        <div class="strip-frame" data-media-frame>
+          <img class="media-img" data-media-image src="assets/projects/khwaab-frame-01.png" alt="KHWAAB — story frame 1" loading="lazy" decoding="async">
+          <span class="media-fallback">FRAME 01</span>
+        </div>
+        <div class="strip-frame" data-media-frame>
+          <img class="media-img" data-media-image src="assets/projects/khwaab-frame-02.png" alt="KHWAAB — story frame 2" loading="lazy" decoding="async">
+          <span class="media-fallback">FRAME 02</span>
+        </div>
+        <div class="strip-frame" data-media-frame>
+          <img class="media-img" data-media-image src="assets/projects/khwaab-frame-03.png" alt="KHWAAB — story frame 3" loading="lazy" decoding="async">
+          <span class="media-fallback">FRAME 03</span>
+        </div>
+        <div class="strip-frame" data-media-frame>
+          <img class="media-img" data-media-image src="assets/projects/khwaab-frame-04.png" alt="KHWAAB — story frame 4" loading="lazy" decoding="async">
+          <span class="media-fallback">FRAME 04</span>
+        </div>
+        <div class="strip-frame" data-media-frame>
+          <img class="media-img" data-media-image src="assets/projects/khwaab-frame-05.png" alt="KHWAAB — story frame 5" loading="lazy" decoding="async">
+          <span class="media-fallback">FRAME 05</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STORIES ============ -->
+  <section id="stories" class="stories">
+    <h2 class="stories-title" data-split>STORIES WITHOUT END.</h2>
+
+    <div class="story-card" data-cursor="KHWAAB">
+      <div class="story-num">01</div>
+      <div class="story-image sp-1" data-media-frame>
+        <img class="media-img" data-media-image src="assets/projects/khwaab.png" alt="KHWAAB — graphic novel thumbnail" loading="lazy" decoding="async">
+        <span class="media-fallback">LOADING...</span>
+      </div>
+      <div class="story-info">
+        <h3>KHWAAB</h3>
+        <p>Graphic Novel — 2026</p>
+      </div>
+    </div>
+
+    <div class="story-card" data-cursor="DASHAVATAR">
+      <div class="story-num">02</div>
+      <div class="story-image sp-2" data-media-frame>
+        <img class="media-img" data-media-image src="assets/projects/dashavatar.png" alt="DASHAVATAR — visual story universe thumbnail" loading="lazy" decoding="async">
+        <span class="media-fallback">LOADING...</span>
+      </div>
+      <div class="story-info">
+        <h3>DASHAVATAR</h3>
+        <p>Visual Story Universe — Coming Soon</p>
+      </div>
+    </div>
+
+    <div class="story-card" data-cursor="PANCHTATVA">
+      <div class="story-num">03</div>
+      <div class="story-image sp-3" data-media-frame>
+        <img class="media-img" data-media-image src="assets/projects/panchtatva.png" alt="PANCHTATVA — an Anant original, in development" loading="lazy" decoding="async">
+        <span class="media-fallback">LOADING...</span>
+      </div>
+      <div class="story-info">
+        <h3>PANCHTATVA</h3>
+        <p>An Anant Original — In Development</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VISUALS / PHOTOGRAPHY ============ -->
+  <section id="visuals" class="visuals">
+    <div class="visuals-head">
+      <h2 data-split>PHOTOGRAPHY</h2>
+      <p data-split-lines>Some stories are written.<br>Some are simply noticed.</p>
+    </div>
+
+    <div class="gallery" id="gallery">
+      <figure class="g-item g-tall" data-src="assets/images/visual-01.jpeg" data-title="NATURE STUDY" data-frame="FRAME 001" data-media-frame>
+        <img class="media-img" data-media-image src="assets/images/visual-01.jpeg" alt="NATURE STUDY — FRAME 001" loading="lazy" decoding="async">
+        <div class="g-placeholder media-fallback"><span>LOADING...</span></div>
+      </figure>
+      <figure class="g-item g-wide" data-src="assets/images/visual-02.png" data-title="LIGHT & PETALS" data-frame="FRAME 002" data-media-frame>
+        <img class="media-img" data-media-image src="assets/images/visual-02.png" alt="LIGHT &amp; PETALS — FRAME 002" loading="lazy" decoding="async">
+        <div class="g-placeholder media-fallback"><span>LOADING...</span></div>
+      </figure>
+      <figure class="g-item g-square" data-src="assets/images/visual-03.png" data-title="MOMENTS" data-frame="FRAME 003" data-media-frame>
+        <img class="media-img" data-media-image src="assets/images/visual-03.png" alt="MOMENTS — FRAME 003" loading="lazy" decoding="async">
+        <div class="g-placeholder media-fallback"><span>LOADING...</span></div>
+      </figure>
+      <figure class="g-item g-large" data-src="assets/images/visual-04.png" data-title="STILLNESS" data-frame="FRAME 004" data-media-frame>
+        <img class="media-img" data-media-image src="assets/images/visual-04.png" alt="STILLNESS — FRAME 004" loading="lazy" decoding="async">
+        <div class="g-placeholder media-fallback"><span>LOADING...</span></div>
+      </figure>
+      <figure class="g-item g-tall" data-src="assets/images/visual-05.jpeg" data-title="AFTERGLOW" data-frame="FRAME 005" data-media-frame>
+        <img class="media-img" data-media-image src="assets/images/visual-05.jpeg" alt="AFTERGLOW — FRAME 005" loading="lazy" decoding="async">
+        <div class="g-placeholder media-fallback"><span>LOADING...</span></div>
+      </figure>
+      <figure class="g-item g-square" data-src="assets/images/visual-06.png" data-title="THRESHOLD" data-frame="FRAME 006" data-media-frame>
+        <img class="media-img" data-media-image src="assets/images/visual-06.png" alt="THRESHOLD — FRAME 006" loading="lazy" decoding="async">
+        <div class="g-placeholder media-fallback"><span>LOADING...</span></div>
+      </figure>
+    </div>
+        <a href="photography.html" class="btn btn--filled btn--large magnetic" data-cursor="CLICK">EXPLORE MORE</a>
+  </section>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
+    <button class="lb-prev" id="lb-prev" aria-label="Previous">‹</button>
+    <div class="lb-image" id="lb-image" data-media-frame>
+      <img class="media-img lb-media-img" id="lb-img" data-media-image alt="" loading="eager" decoding="async">
+      <div class="media-fallback lb-fallback"><span id="lb-filename"></span></div>
+    </div>
+    <button class="lb-next" id="lb-next" aria-label="Next">›</button>
+    <div class="lb-meta">
+      <span id="lb-frame"></span>
+      <span id="lb-title"></span>
+    </div>
+  </div>
+
+  <!-- ============ EXPERIMENTS ============ -->
+  <section id="experiments" class="experiments">
+    <span class="section-label">04 / LAB</span>
+    <h2 data-split>WHAT IF?</h2>
+    <p class="experiments-lead" data-split-lines>WHAT IF STORIES<br>COULD MOVE,<br>THINK,<br>AND EVOLVE?</p>
+
+    <div class="exp-cards" id="exp-cards">
+      <div class="exp-card"><h3>AI FILMS</h3><p>Cinematic experiments made with generative tools.</p></div>
+      <div class="exp-card"><h3>MOTION</h3><p>Kinetic studies in type, image and rhythm.</p></div>
+      <div class="exp-card"><h3>CONCEPT ART</h3><p>Worlds sketched before they're written.</p></div>
+      <div class="exp-card"><h3>DIGITAL EXPERIENCES</h3><p>Interactive pieces built for the browser.</p></div>
+    </div>
+
+    <a href="lab.html" class="btn btn--filled magnetic" data-cursor="ENTER">ENTER THE LAB</a>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-row marquee-row--outline">
+      <div class="marquee-track">
+        <span>STORIES • PHOTOGRAPHY • FILMS • IDEAS • EXPERIMENTS • VISUALS • </span>
+        <span>STORIES • PHOTOGRAPHY • FILMS • IDEAS • EXPERIMENTS • VISUALS • </span>
+      </div>
+    </div>
+    <div class="marquee-row marquee-row--filled">
+      <div class="marquee-track marquee-track--reverse">
+        <span>STORIES • PHOTOGRAPHY • FILMS • IDEAS • EXPERIMENTS • VISUALS • </span>
+        <span>STORIES • PHOTOGRAPHY • FILMS • IDEAS • EXPERIMENTS • VISUALS • </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="about">
+    <span class="section-label">05 / ABOUT US</span>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 data-split>ANANT MEANS</h2>
+        <p data-split-lines>Anant Media was created from a simple belief: creativity should never be trapped inside a single medium.</p>
+        <p data-split-lines>A story can become an image. An image can become a film. A thought can become an entire universe.</p>
+        <p data-split-lines>We explore the space between stories, visuals, technology, and imagination.</p>
+        <p class="about-emph" data-split-lines>Because creativity has no final frame.</p>
+      </div>
+      <div class="about-visual">
+        <canvas id="about-canvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+<!-- ============ FOUNDER ============ -->
+<section id="founder" class="founder">
+  <h2 data-split>BEHIND ANANT.</h2>
+  <div class="founder-body">
+    <div class="founder-image" data-media-frame>
+      <img class="media-img" data-media-image src="assets/images/founder.png" alt="Karthik Vijay — founder and creator of Anant Media" loading="lazy" decoding="async">
+      <div class="founder-placeholder media-fallback">
+        <span>LOADING...</span>
+      </div>
+    </div>
+    <div class="founder-info">
+      <h3>KARTHIK VIJAY</h3>
+      <p class="founder-role">FOUNDER / CREATOR</p>
+      <p class="founder-bio">A creator exploring the intersection of storytelling, visual art, technology, and imagination.</p>
+      <div class="founder-links">
+        <a href="https://www.linkedin.com/in/karthikvijayofficial/" target="_blank" rel="noopener noreferrer" data-cursor="">LINKEDIN</a>
+        <a href="https://www.instagram.com/_k.vrx/" target="_blank" rel="noopener noreferrer" data-cursor="">INSTAGRAM</a>
+        <a href="https://github.com/kartik-108" target="_blank" rel="noopener noreferrer" data-cursor="">GITHUB</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ============ COLLABORATION CTA ============ -->
+  <section id="collab" class="collab">
+    <div class="collab-glow" aria-hidden="true"></div>
+    <h2 data-split-lines>HAVE AN IDEA<br>THAT DOESN'T FIT<br>INSIDE A BOX?</h2>
+    <p class="collab-good" data-split>GOOD.</p>
+    <p class="collab-sub" data-split>LET'S CREATE IT.</p>
+    <a href="contact.html" class="btn btn--filled btn--large magnetic" data-cursor="TALK">START A CONVERSATION</a>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer-grain" aria-hidden="true"></div>
+  <h2 class="footer-word">ANANT</h2>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <p>ANANT MEDIA</p>
+      <p>INFINITE IDEAS.<br>INFINITE STORIES.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="#stories">Stories</a>
+      <a href="#visuals">Visuals</a>
+      <a href="#experiments">Experiments</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/anantmedia.co/">Instagram</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ANANT MEDIA</span>
+    <span>CREATIVITY HAS NO FINAL FRAME.</span>
+    <span>MADE WITH CURIOSITY.</span>
+  </div>
+</footer>
+
+<!-- ============ LIBRARIES ============ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+
+<!-- ============ APP SCRIPTS ============ -->
+<script src="js/three-scene.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

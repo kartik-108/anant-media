@@ -1,0 +1,596 @@
+/* =========================================================
+   ANANT MEDIA — INNER PAGES (SHARED)
+   Loaded by khwaab.html, read-khwaab.html, photography.html,
+   lab.html and contact.html — never by index.html.
+
+   Everything here reuses the tokens already defined in
+   css/style.css (colors, --font-display/--font-serif,
+   --ease-cinematic/--ease-soft, breakpoints). No new colors,
+   no new fonts, no new spacing scale — this file only adds
+   the layout *shapes* internal pages need that the homepage
+   doesn't: a context-aware nav label, a per-page entry
+   reveal, an editorial two-column pattern, a flexible image
+   "rhythm" system, and the handful of page-specific
+   components (Lab chambers/experiment index, contact form)
+   the brief asks for.
+   ========================================================= */
+
+/* ---------- Nav context indicator ----------
+   "ANANT MEDIA        KHWAAB / 001" — sits in the same
+   .nav flex row as the homepage, replacing .nav-links. */
+.nav-context{
+  font-size:0.72rem;
+  letter-spacing:0.18em;
+  color:var(--silver-dim);
+  text-transform:uppercase;
+}
+
+/* ---------- Page entry reveal ----------
+   Each internal page's own short, quiet entry — never the
+   homepage's counter loader. Content fades/rises in via GSAP
+   in inner-pages.js; this just lays out the still frame. */
+.page-entry{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:calc(var(--nav-h) + 4rem) 6vw 4rem;
+}
+.page-entry-eyebrow{
+  font-size:0.72rem;
+  letter-spacing:0.3em;
+  color:var(--silver);
+  margin-bottom:1.6rem;
+  text-transform:uppercase;
+}
+.page-entry-title{
+  font-size:clamp(3.4rem,14vw,10rem);
+  font-weight:500;
+  line-height:0.88;
+  margin:0;
+  letter-spacing:-0.01em;
+}
+.page-entry-subtitle{
+  font-size:0.78rem;
+  letter-spacing:0.3em;
+  color:var(--silver);
+  margin:1.2rem 0 0;
+  text-transform:uppercase;
+}
+.page-entry-line{
+  margin:2.8rem 0 0;
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(1rem,2vw,1.35rem);
+  color:var(--silver);
+  max-width:34ch;
+  line-height:1.6;
+}
+.page-entry-scroll{
+  position:absolute;left:50%;bottom:3rem;
+  transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:0.8rem;
+}
+.page-entry-scroll .scroll-line{
+  width:1px;height:40px;
+  background:linear-gradient(var(--silver-dim),transparent);
+  position:relative;overflow:hidden;
+}
+.page-entry-scroll .scroll-line::after{
+  content:'';position:absolute;top:-100%;left:0;right:0;height:100%;
+  background:var(--white);
+  animation:scroll-drip 2.2s var(--ease-soft) infinite;
+}
+
+/* ---------- Editorial two-column pattern ----------
+   Reused for "Behind the Dream", "Why AI?", photography
+   philosophy, and the Lab's core-philosophy section. */
+.editorial{padding:9rem 6vw;}
+.editorial-grid{
+  display:grid;
+  grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);
+  gap:5vw;
+  align-items:start;
+}
+.editorial-grid.editorial-grid--center{align-items:center;}
+.editorial-heading{
+  font-size:clamp(2.2rem,6vw,5rem);
+  font-weight:500;
+  line-height:1.05;
+  margin:0;
+  letter-spacing:-0.01em;
+}
+.editorial-body p{
+  font-size:clamp(1rem,1.6vw,1.15rem);
+  color:var(--silver);
+  line-height:1.8;
+  font-weight:300;
+  margin:0 0 1.4rem;
+  max-width:58ch;
+}
+.editorial-body p:last-child{margin-bottom:0;}
+.editorial-body .editorial-emph{
+  font-family:var(--font-serif);
+  font-style:italic;
+  color:var(--white);
+  font-size:clamp(1.1rem,2vw,1.4rem);
+}
+/* Single-column, centered variant — e.g. "WHY AI?" */
+.editorial--solo{max-width:900px;margin:0 auto;text-align:center;}
+.editorial--solo .editorial-heading{margin-bottom:2rem;}
+.editorial--solo .editorial-body p{max-width:52ch;margin-left:auto;margin-right:auto;}
+
+/* ---------- Short cinematic text pauses ----------
+   Fragments between images: "A DREAM." / "A MEMORY." etc. */
+.text-pause{
+  padding:9vw 6vw;
+  text-align:center;
+}
+.text-pause p{
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(1.3rem,3vw,2.1rem);
+  color:var(--silver);
+  max-width:22ch;
+  margin:0 auto;
+  line-height:1.5;
+}
+.text-pause--tiny p{
+  font-family:var(--font-display);
+  font-style:normal;
+  font-weight:500;
+  font-size:clamp(1rem,2.2vw,1.5rem);
+  letter-spacing:0.04em;
+  color:var(--silver-dim);
+  max-width:none;
+}
+
+/* ---------- Stacked statement blocks ----------
+   Used by contact.html's multi-stage scroll intro
+   ("YOU HAVE AN IDEA." -> "IT DOESN'T FIT..." -> "GOOD." ->
+   "TELL ME ABOUT IT."), each its own quiet beat. */
+.statement{padding:9vw 6vw;text-align:center;}
+.statement h2{
+  font-size:clamp(2.2rem,7vw,5.5rem);
+  font-weight:500;
+  line-height:1.08;
+  margin:0;
+  letter-spacing:-0.01em;
+}
+.statement--serif h2{
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:400;
+}
+
+/* ---------- Coming soon (embedded, not a banner) ---------- */
+.coming-soon{
+  position:relative;
+  padding:14vw 6vw;
+  text-align:center;
+}
+.coming-soon h2{
+  font-size:clamp(3rem,11vw,7.5rem);
+  font-weight:500;
+  margin:0;
+  letter-spacing:-0.01em;
+}
+.coming-soon p{
+  margin:1.2rem 0 0;
+  font-size:0.75rem;
+  letter-spacing:0.28em;
+  color:var(--silver);
+  text-transform:uppercase;
+}
+
+/* ---------- Page ending screen ---------- */
+.page-ending{
+  min-height:92vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  padding:6rem 6vw;
+}
+.page-ending-eyebrow{
+  font-size:0.72rem;letter-spacing:0.3em;color:var(--silver);
+  margin-bottom:1.4rem;text-transform:uppercase;
+}
+.page-ending h2{
+  font-size:clamp(2.2rem,6.5vw,4.8rem);
+  font-weight:500;
+  line-height:1.08;
+  margin:0;
+}
+.button-row{
+  display:flex;flex-wrap:wrap;gap:1rem;
+  justify-content:center;
+  margin-top:3rem;
+}
+.button-row--start{justify-content:flex-start;}
+
+/* =========================================================
+   CINEMATIC IMAGE RHYTHM SYSTEM
+   Shared by the KHWAAB world gallery and the photography
+   exhibition. Each .rhythm-row is one "beat"; its modifier
+   controls the geometry. .rhythm-frame is always a
+   [data-media-frame] — the existing media containment system
+   (media-img / media-fallback) governs what happens inside.
+   ========================================================= */
+.rhythm{position:relative;}
+.rhythm-row{width:100%;}
+.rhythm-frame{
+  position:relative;
+  overflow:hidden;
+  border-radius:2px;
+  background:linear-gradient(160deg,#17161b,#0a0a0c);
+  border:1px solid rgba(255,255,255,0.06);
+}
+.rhythm-frame .media-fallback{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--silver-dim);
+  font-size:0.68rem;
+  letter-spacing:0.08em;
+  text-align:center;
+  padding:1rem;
+}
+
+/* Massive near-full-bleed landscape */
+.rhythm-row--full{padding:0;}
+.rhythm-row--full .rhythm-frame{width:100%;aspect-ratio:16/9;}
+
+/* Small portrait, surrounded by darkness */
+.rhythm-row--portrait-sm{display:flex;justify-content:center;padding:9vw 6vw;}
+.rhythm-row--portrait-sm .rhythm-frame{width:min(30vw,340px);aspect-ratio:3/4;}
+
+/* Asymmetric paired composition */
+.rhythm-row--pair{
+  display:grid;
+  grid-template-columns:minmax(0,1.3fr) minmax(0,0.7fr);
+  gap:2vw;
+  align-items:end;
+  padding:5vw 6vw;
+}
+.rhythm-row--pair .rhythm-frame:first-child{aspect-ratio:4/5;}
+.rhythm-row--pair .rhythm-frame:last-child{aspect-ratio:3/4;margin-bottom:5vw;}
+
+/* Full-width panoramic band */
+.rhythm-row--wide{padding:0;}
+.rhythm-row--wide .rhythm-frame{width:100%;aspect-ratio:21/9;}
+
+/* Aligned far right, extreme negative space */
+.rhythm-row--right{display:flex;justify-content:flex-end;padding:6vw;}
+.rhythm-row--right .rhythm-frame{width:min(38vw,460px);aspect-ratio:4/3;}
+
+/* Tall portrait */
+.rhythm-row--tall{display:flex;justify-content:center;padding:5vw 6vw;}
+.rhythm-row--tall .rhythm-frame{width:min(28vw,340px);aspect-ratio:2/3;}
+
+/* Layered cinematic composition — two frames, offset depth */
+.rhythm-row--layered{position:relative;padding:9vw 6vw;min-height:76vh;}
+.rhythm-row--layered .rhythm-frame--back{
+  position:absolute;top:9vw;left:6vw;
+  width:44vw;aspect-ratio:4/3;
+}
+.rhythm-row--layered .rhythm-frame--front{
+  position:absolute;bottom:9vw;right:8vw;
+  width:32vw;aspect-ratio:3/4;
+  box-shadow:0 40px 70px -20px rgba(0,0,0,0.7);
+}
+
+/* Bleeds off the right edge of the viewport */
+.rhythm-row--offset-edge{padding:6vw 0 6vw 6vw;overflow:hidden;}
+.rhythm-row--offset-edge .rhythm-frame{width:74vw;aspect-ratio:16/9;margin-left:auto;}
+
+/* Small, centered, isolated */
+.rhythm-row--center-sm{display:flex;justify-content:center;padding:10vw 6vw;}
+.rhythm-row--center-sm .rhythm-frame{width:min(22vw,240px);aspect-ratio:1/1;}
+
+/* Two-image conversation */
+.rhythm-row--two{
+  display:grid;grid-template-columns:1fr 1fr;gap:1.4vw;
+  padding:4vw 6vw;
+}
+.rhythm-row--two .rhythm-frame{aspect-ratio:3/4;}
+
+/* Three-image rhythm */
+.rhythm-row--three{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:1vw;
+  padding:4vw 6vw;
+}
+.rhythm-row--three .rhythm-frame{aspect-ratio:3/4;}
+
+/* Offset-left mirror of --right, used for variety in longer sequences */
+.rhythm-row--left{display:flex;justify-content:flex-start;padding:6vw;}
+.rhythm-row--left .rhythm-frame{width:min(38vw,460px);aspect-ratio:4/3;}
+
+/* =========================================================
+   LAB — EXPERIMENT CHAMBERS
+   ========================================================= */
+.chamber{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:4vw;
+  align-items:center;
+  padding:7rem 6vw;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+.chamber:last-of-type{border-bottom:1px solid rgba(255,255,255,0.08);}
+.chamber:nth-child(even) .chamber-media{order:2;}
+.chamber-media{
+  position:relative;
+  aspect-ratio:4/3;
+  border-radius:2px;
+  overflow:hidden;
+  background:linear-gradient(160deg,#17161b,#0a0a0c);
+  border:1px solid rgba(255,255,255,0.06);
+}
+.chamber-media .media-fallback{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--silver-dim);font-size:0.68rem;letter-spacing:0.08em;
+}
+.chamber-num{
+  display:block;
+  font-size:0.75rem;
+  color:var(--silver);
+  letter-spacing:0.18em;
+  margin-bottom:1.2rem;
+}
+.chamber-status{
+  display:inline-block;
+  font-size:0.62rem;
+  letter-spacing:0.18em;
+  color:var(--silver-dim);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:100px;
+  padding:0.4rem 0.9rem;
+  margin-bottom:1.6rem;
+  text-transform:uppercase;
+}
+.chamber-text h3{
+  font-size:clamp(1.9rem,4.2vw,3.2rem);
+  font-weight:500;
+  margin:0 0 1.1rem;
+}
+.chamber-text p{
+  color:var(--silver);
+  line-height:1.75;
+  font-weight:300;
+  max-width:44ch;
+  margin:0;
+}
+
+/* ---------- Ongoing questions / experiment index ---------- */
+.experiment-index{padding:6rem 6vw 9rem;}
+.experiment-index-title{
+  font-size:clamp(2rem,5.5vw,4rem);
+  font-weight:500;
+  margin:0 0 3rem;
+}
+.experiment-entry{
+  display:block;
+  padding:2.1rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.experiment-entry .exp-id{
+  display:block;
+  font-size:0.68rem;
+  color:var(--silver-dim);
+  letter-spacing:0.18em;
+  margin-bottom:0.7rem;
+}
+.experiment-entry .exp-question{
+  display:inline-block;
+  font-size:clamp(1.25rem,3vw,2.1rem);
+  font-weight:500;
+  transition:transform .4s var(--ease-cinematic),color .4s;
+}
+.experiment-entry .exp-micro{
+  display:block;
+  font-size:0.82rem;
+  color:var(--silver-dim);
+  margin-top:0;
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+  transition:max-height .4s var(--ease-cinematic),opacity .35s,margin-top .4s;
+}
+.experiment-entry:hover .exp-question{transform:translateX(14px);color:var(--silver);}
+.experiment-entry:hover .exp-micro{max-height:60px;opacity:1;margin-top:0.7rem;}
+
+/* ---------- Interactive lab field (particles) ---------- */
+.field-section{
+  position:relative;
+  height:70vh;
+  min-height:460px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+#lab-field-canvas{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+}
+.field-message{
+  position:relative;z-index:1;
+  font-size:clamp(1.3rem,3.2vw,2.3rem);
+  font-weight:500;
+  text-align:center;
+  max-width:15ch;
+  line-height:1.3;
+  pointer-events:none;
+}
+
+/* =========================================================
+   CONTACT — CONVERSATION FORM
+   ========================================================= */
+.conversation-form{
+  max-width:640px;
+  margin:0 auto;
+  padding:2rem 6vw 6rem;
+}
+.form-field{position:relative;margin-bottom:3rem;}
+.form-field label{
+  display:block;
+  font-size:0.68rem;
+  letter-spacing:0.2em;
+  color:var(--silver-dim);
+  margin-bottom:0.9rem;
+  text-transform:uppercase;
+}
+.form-field input,
+.form-field textarea{
+  width:100%;
+  background:transparent;
+  border:none;
+  border-bottom:1px solid rgba(255,255,255,0.18);
+  color:var(--white);
+  font-family:var(--font-display);
+  font-size:1.1rem;
+  padding:0.7rem 0;
+  transition:border-color .35s var(--ease-soft);
+}
+.form-field textarea{
+  resize:vertical;
+  min-height:130px;
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-size:1.35rem;
+  line-height:1.55;
+}
+.form-field input:focus,
+.form-field textarea:focus{
+  outline:none;
+  border-color:var(--white);
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder{color:var(--silver-dim);}
+
+.conversation-form .btn[type="submit"]{
+  border:none;
+}
+.form-note{
+  margin-top:2.5rem;
+  padding-top:2.5rem;
+  border-top:1px solid rgba(255,255,255,0.08);
+  text-align:center;
+  display:none;
+}
+.form-note.is-visible{display:block;}
+.form-note-title{
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-size:clamp(1.1rem,2vw,1.4rem);
+  margin:0 0 0.6rem;
+}
+.form-note-sub{
+  font-size:0.85rem;
+  color:var(--silver);
+  margin:0 0 2rem;
+}
+.conversation-form.is-submitted .form-field,
+.conversation-form.is-submitted .form-submit-row{display:none;}
+
+.direct-connection{
+  text-align:center;
+  padding:0 6vw 8rem;
+}
+.direct-connection-label{
+  display:block;
+  font-size:0.72rem;
+  letter-spacing:0.25em;
+  color:var(--silver);
+  margin-bottom:1.6rem;
+  text-transform:uppercase;
+}
+.direct-connection-links{
+  display:flex;justify-content:center;gap:2.4rem;flex-wrap:wrap;
+}
+.direct-connection-links a{
+  font-size:0.85rem;
+  letter-spacing:0.1em;
+  position:relative;
+}
+.direct-connection-links a::after{
+  content:'';position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--white);
+  transition:width .3s var(--ease-cinematic);
+}
+.direct-connection-links a:hover::after{width:100%;}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width:1024px){
+  .editorial-grid{grid-template-columns:1fr;gap:3rem;}
+  .chamber{grid-template-columns:1fr;gap:2.5rem;padding:5rem 6vw;}
+  .chamber:nth-child(even) .chamber-media{order:0;}
+  .rhythm-row--pair{grid-template-columns:1fr;gap:3rem;}
+  .rhythm-row--pair .rhythm-frame:last-child{margin-bottom:0;width:min(50vw,340px);margin-left:auto;margin-right:auto;}
+}
+
+@media (max-width:768px){
+  .nav-context{display:none;}
+
+  .page-entry-title{font-size:clamp(2.8rem,18vw,5.5rem);}
+  .page-entry{padding:calc(var(--nav-h) + 2rem) 6vw 3rem;}
+
+  .editorial{padding:6rem 6vw;}
+  .rhythm-row--portrait-sm .rhythm-frame,
+  .rhythm-row--tall .rhythm-frame{width:min(60vw,320px);}
+  .rhythm-row--right .rhythm-frame,
+  .rhythm-row--left .rhythm-frame{width:min(70vw,420px);}
+  .rhythm-row--right{padding:5vw 6vw;}
+  .rhythm-row--left{padding:5vw 6vw;}
+  .rhythm-row--layered{min-height:0;padding:5vw 6vw;display:flex;flex-direction:column;gap:1.4rem;}
+  .rhythm-row--layered .rhythm-frame--back,
+  .rhythm-row--layered .rhythm-frame--front{position:relative;top:auto;left:auto;right:auto;bottom:auto;width:100%;}
+  .rhythm-row--two,
+  .rhythm-row--three{grid-template-columns:1fr;gap:1rem;}
+  .rhythm-row--offset-edge .rhythm-frame{width:88vw;}
+  .rhythm-row--center-sm .rhythm-frame{width:min(50vw,220px);}
+
+  .coming-soon{padding:20vw 6vw;}
+
+  .conversation-form{padding:1rem 6vw 4rem;}
+  .direct-connection-links{gap:1.6rem;}
+}
+
+@media (max-width:430px){
+  .button-row{flex-direction:column;align-items:stretch;}
+  .button-row .btn{text-align:center;}
+}
+[data-media-frame] {
+  position: relative;
+  overflow: hidden;
+}
+
+[data-media-frame] > .media-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  opacity: 0;
+}
+
+[data-media-frame][data-media-loaded="true"] > .media-img,
+[data-media-frame].media-loaded > .media-img {
+  opacity: 1;
+}
+
+[data-media-frame][data-media-loaded="true"] > .media-fallback,
+[data-media-frame].media-loaded > .media-fallback {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.chamber-media video.media-img {
+  object-fit: cover;
+  object-position: center;
+}

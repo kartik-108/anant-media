@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Read KHWAAB | Anant Media</title>
+<meta name="description" content="A private digital reading room for KHWAAB, an Anant Stories graphic novel.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Neue+Montreal:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/inner-pages.css">
+<link rel="stylesheet" href="css/reader.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="page-curtain" id="page-curtain" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-outline" id="cursor-outline" aria-hidden="true"><span id="cursor-text"></span></div>
+
+<header class="nav" id="site-nav">
+  <a href="index.html" class="nav-logo" data-cursor="">ANANT&nbsp;MEDIA</a>
+  <span class="nav-context">KHWAAB / DIGITAL EDITION</span>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-bg"></div>
+  <ul class="mobile-links">
+    <li><a href="index.html" data-index="01"><span class="mm-num">01</span> HOME</a></li>
+    <li><a href="khwaab.html" data-index="02"><span class="mm-num">02</span> KHWAAB</a></li>
+    <li><a href="read-khwaab.html" data-index="03"><span class="mm-num">03</span> READ</a></li>
+    <li><a href="photography.html" data-index="04"><span class="mm-num">04</span> PHOTOGRAPHY</a></li>
+    <li><a href="lab.html" data-index="05"><span class="mm-num">05</span> LAB</a></li>
+    <li><a href="contact.html" data-index="06"><span class="mm-num">06</span> CONTACT</a></li>
+  </ul>
+</div>
+
+<!-- ============ INTRO OVERLAY ============ -->
+<div class="reader-intro" id="reader-intro" aria-hidden="true">
+  <span class="reader-intro-eyebrow">AN ANANT STORIES ORIGINAL</span>
+  <h1 class="reader-intro-title">KHWAAB</h1>
+  <p class="reader-intro-subtitle">A GRAPHIC NOVEL</p>
+  <p class="reader-intro-line">SOME DREAMS ARE SEEN WITH CLOSED EYES.<br>OTHERS WAIT FOR US TO WAKE.</p>
+</div>
+
+<main>
+
+  <!-- ============ READING STAGE ============ -->
+  <section class="reader-stage" id="reader-stage">
+
+    <div class="reader-canvas-zone" id="reader-canvas-zone">
+      <button class="reader-edge reader-edge--prev" id="reader-edge-prev" aria-label="Previous page" tabindex="-1"></button>
+
+      <div class="reader-canvas-frame" id="reader-canvas-frame">
+        <canvas id="reader-canvas" aria-label="KHWAAB comic page"></canvas>
+        <div class="reader-loading" id="reader-loading" aria-live="polite"><span>OPENING THE PAGES…</span></div>
+        <div class="reader-fallback" id="reader-fallback" hidden>
+          <p class="reader-fallback-title">THE DREAM IS STILL LOADING.</p>
+          <p class="reader-fallback-sub">Releasing on 18th July 2026</p>
+          <a href="index.html" class="btn btn--outline magnetic" data-transition>RETURN TO HOME</a>
+        </div>
+      </div>
+
+      <button class="reader-edge reader-edge--next" id="reader-edge-next" aria-label="Next page" tabindex="-1"></button>
+    </div>
+
+    <div class="reader-controls" id="reader-controls" aria-live="polite">
+      <button class="reader-btn" id="reader-prev" aria-label="Previous page">‹ PREV</button>
+      <span class="reader-count"><span id="reader-current">01</span> / <span id="reader-total">—</span></span>
+      <button class="reader-btn" id="reader-next" aria-label="Next page">NEXT ›</button>
+      <button class="reader-btn" id="reader-fullscreen" aria-label="Toggle fullscreen">FULLSCREEN</button>
+      <a class="reader-btn" href="khwaab.html" data-transition>EXPLORE KHWAAB</a>
+    </div>
+
+    <div class="reader-progress-line" aria-hidden="true"><span id="reader-progress-fill"></span></div>
+  </section>
+
+  <!-- ============ ENDING (reveals naturally as the reader scrolls past it) ============ -->
+  <section class="page-ending reveal">
+    <p class="page-ending-eyebrow" data-split-lines>YOU HAVE REACHED THE END OF THIS DREAM.</p>
+    <h2 data-split>THANK YOU FOR READING KHWAAB.</h2>
+    <p class="reader-ending-credit">ANANT STORIES — 2026</p>
+    <div class="button-row">
+      <a href="khwaab.html" class="btn btn--outline magnetic" data-cursor="" data-transition>RETURN TO KHWAAB</a>
+      <a href="index.html" class="btn btn--filled magnetic" data-cursor="" data-transition>BACK TO ANANT MEDIA</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grain" aria-hidden="true"></div>
+  <h2 class="footer-word">ANANT</h2>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <p>ANANT MEDIA</p>
+      <p>INFINITE IDEAS.<br>INFINITE STORIES.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="khwaab.html">Khwaab</a>
+      <a href="photography.html">Photography</a>
+      <a href="lab.html">Lab</a>
+    </nav>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/_k.vrx/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://www.linkedin.com/in/karthikvijayofficial/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/kartik-108" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ANANT MEDIA</span>
+    <span>CREATIVITY HAS NO FINAL FRAME.</span>
+    <span>MADE WITH CURIOSITY.</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<!-- PDF.js — used only on this page, isolated to js/reader.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/inner-pages.js"></script>
+<script src="js/reader.js"></script>
+</body>
+</html>

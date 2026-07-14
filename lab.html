@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Lab | Anant Media</title>
+<meta name="description" content="Anant Media's experimental space — AI films, motion, concept art, and digital experiences that don't yet know what they're becoming.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Neue+Montreal:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/inner-pages.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="page-curtain" id="page-curtain" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-outline" id="cursor-outline" aria-hidden="true"><span id="cursor-text"></span></div>
+
+<header class="nav" id="site-nav">
+  <a href="index.html" class="nav-logo" data-cursor="">ANANT&nbsp;MEDIA</a>
+  <span class="nav-context">THE LAB / EXPERIMENTAL</span>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu-bg"></div>
+  <ul class="mobile-links">
+    <li><a href="index.html" data-index="01"><span class="mm-num">01</span> HOME</a></li>
+    <li><a href="khwaab.html" data-index="02"><span class="mm-num">02</span> KHWAAB</a></li>
+    <li><a href="read-khwaab.html" data-index="03"><span class="mm-num">03</span> READ</a></li>
+    <li><a href="photography.html" data-index="04"><span class="mm-num">04</span> PHOTOGRAPHY</a></li>
+    <li><a href="lab.html" data-index="05"><span class="mm-num">05</span> LAB</a></li>
+    <li><a href="contact.html" data-index="06"><span class="mm-num">06</span> CONTACT</a></li>
+  </ul>
+</div>
+
+<main>
+
+  <!-- ============ ENTRY ============ -->
+  <section class="page-entry">
+    <span class="page-entry-eyebrow">ANANT LAB / EXPERIMENT 000</span>
+    <h1 class="page-entry-title" data-split>WHAT IF?</h1>
+    <div class="page-entry-scroll" aria-hidden="true"><span class="scroll-line"></span></div>
+  </section>
+
+  <!-- ============ WHAT IF STORIES... ============ -->
+  <section class="editorial editorial--solo">
+    <h2 class="editorial-heading" data-split-lines>WHAT IF STORIES<br>COULD MOVE,<br>THINK,<br>AND EVOLVE?</h2>
+  </section>
+
+  <!-- ============ CORE PHILOSOPHY ============ -->
+  <section class="editorial">
+    <div class="editorial-grid editorial-grid--center">
+      <div>
+        <span class="section-label">CORE PHILOSOPHY</span>
+        <h2 class="editorial-heading" data-split-lines>IDEAS EXIST HERE<br>BEFORE THEY KNOW<br>WHAT THEY'RE BECOMING.</h2>
+      </div>
+      <div class="editorial-body">
+        <p data-split-lines>A story may begin as an image. An image may become motion. Motion may become an interaction.</p>
+        <p data-split-lines>An experiment may fail. The failure may reveal another direction entirely.</p>
+        <p class="editorial-emph" data-split-lines>This is not a collection of finished products. It is a space for creative questions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIMENT CHAMBERS ============ -->
+  <section aria-label="Experiment chambers">
+
+<div class="chamber">
+  <div class="chamber-media" data-media-frame data-cursor="EXPLORE">
+    <video
+      class="media-img"
+      src="assets/videos/ai-film-01.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      onloadeddata="this.closest('[data-media-frame]').setAttribute('data-media-loaded', 'true')"
+      onerror="this.closest('[data-media-frame]').removeAttribute('data-media-loaded')"
+    ></video>
+
+    <div class="media-fallback">
+    </div>
+  </div>
+
+  <div class="chamber-text">
+    <span class="chamber-num">01 / AI FILMS</span>
+    <span class="chamber-status">EXPERIMENT ACTIVE</span>
+    <h3>Cinema imagined with new tools.</h3>
+    <p>Short cinematic experiments made at the edge of generative and traditional filmmaking where direction still matters more than the tool doing the rendering.</p>
+  </div>
+</div>
+
+<div class="chamber">
+  <div class="chamber-media" data-media-frame data-cursor="EXPLORE">
+    <video
+      class="media-img"
+      src="assets/videos/ai-film-02.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      onloadeddata="this.closest('[data-media-frame]').setAttribute('data-media-loaded', 'true')"
+      onerror="this.closest('[data-media-frame]').removeAttribute('data-media-loaded')"
+    ></video>
+
+    <div class="media-fallback">
+    </div>
+  </div>
+      <div class="chamber-text">
+        <span class="chamber-num">02 / MOTION</span>
+        <span class="chamber-status">EXPERIMENT ACTIVE</span>
+        <h3>Type, images, and rhythm in movement.</h3>
+        <p>Kinetic typography and image studies exploring what happens when a still frame is given a pulse.</p>
+      </div>
+    </div>
+
+    <div class="chamber">
+  <div class="chamber-media" data-media-frame data-cursor="EXPLORE">
+    <video
+      class="media-img"
+      src="assets/videos/concept-01.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      onloadeddata="this.closest('[data-media-frame]').setAttribute('data-media-loaded', 'true')"
+      onerror="this.closest('[data-media-frame]').removeAttribute('data-media-loaded')"
+    ></video>
+
+    <div class="media-fallback">
+    </div>
+  </div>
+      <div class="chamber-text">
+        <span class="chamber-num">03 / CONCEPT ART</span>
+        <span class="chamber-status">EXPERIMENT ACTIVE</span>
+        <h3>Worlds explored before they become stories.</h3>
+        <p>Layered visual studies the raw material a future graphic novel or film might eventually be built from.</p>
+      </div>
+    </div>
+
+    <div class="chamber">
+      <div class="chamber-media" data-media-frame data-cursor="EXPLORE">
+        <img class="media-img" data-media-image src="assets/videos/digital-01.png" alt="Digital experience experiment" loading="lazy" decoding="async">
+        <div class="media-fallback"></div>
+      </div>
+      <div class="chamber-text">
+        <span class="chamber-num">04 / DIGITAL EXPERIENCES</span>
+        <span class="chamber-status">EXPERIMENT ACTIVE</span>
+        <h3>Stories that require participation.</h3>
+        <p>Browser-native pieces that only complete themselves once someone moves through them.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============ ONGOING QUESTIONS ============ -->
+  <section class="experiment-index">
+    <h2 class="experiment-index-title" data-split>ONGOING QUESTIONS.</h2>
+
+    <a class="experiment-entry" href="#" data-cursor="">
+      <span class="exp-id">EXP 001</span>
+      <span class="exp-question">CAN A STILL IMAGE FEEL LIKE A MEMORY?</span>
+      <span class="exp-micro">Sometimes, the frame remembers more than we do.</span>
+    </a>
+    <a class="experiment-entry" href="#" data-cursor="">
+      <span class="exp-id">EXP 002</span>
+      <span class="exp-question">WHAT HAPPENS WHEN A STORY RESPONDS TO YOU?</span>
+      <span class="exp-micro">You stop watching and quietly become part of it.</span>
+    </a>
+    <a class="experiment-entry" href="#" data-cursor="">
+      <span class="exp-id">EXP 003</span>
+      <span class="exp-question">CAN ARTIFICIAL TOOLS PRESERVE HUMAN INTENTION?</span>
+      <span class="exp-micro">Only when the human intention remains the reason.</span>
+    </a>
+    <a class="experiment-entry" href="#" data-cursor="">
+      <span class="exp-id">EXP 004</span>
+      <span class="exp-question">WHERE DOES A FILM END AND AN EXPERIENCE BEGIN?</span>
+      <span class="exp-micro">The moment the audience stops being only an observer.</span>
+    </a>
+    <a class="experiment-entry" href="#" data-cursor="">
+      <span class="exp-id">EXP 005</span>
+      <span class="exp-question">CAN A WEBSITE BECOME A PLACE?</span>
+      <span class="exp-micro">If you remember how it felt to be there, yes.</span>
+    </a>
+  </section>
+
+  <!-- ============ INTERACTIVE LAB MOMENT ============ -->
+  <section class="field-section" aria-label="Ideas do not arrive finished — interactive field">
+    <canvas id="lab-field-canvas"></canvas>
+    <p class="field-message">IDEAS DO NOT ARRIVE FINISHED.</p>
+  </section>
+
+  <!-- ============ ENDING ============ -->
+  <section class="page-ending">
+    <h2 data-split-lines>NO FINAL FORM.<br>ONLY THE NEXT EXPERIMENT.</h2>
+    <div class="button-row">
+      <a href="index.html" class="btn btn--outline magnetic" data-cursor="" data-transition>RETURN TO ANANT</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grain" aria-hidden="true"></div>
+  <h2 class="footer-word">ANANT</h2>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <p>ANANT MEDIA</p>
+      <p>INFINITE IDEAS.<br>INFINITE STORIES.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="khwaab.html">Khwaab</a>
+      <a href="photography.html">Photography</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/_k.vrx/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://www.linkedin.com/in/karthikvijayofficial/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/kartik-108" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ANANT MEDIA</span>
+    <span>CREATIVITY HAS NO FINAL FRAME.</span>
+    <span>MADE WITH CURIOSITY.</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.13/lenis.min.js"></script>
+<script src="js/cursor.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/inner-pages.js"></script>
+<script src="js/lab-field.js"></script>
+</body>
+</html>
