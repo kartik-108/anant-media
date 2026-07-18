@@ -85,24 +85,44 @@
       }
     });
 
-    tl.to(counter, {
-      val: 100,
-      duration: 1.7,
-      ease: 'power2.inOut',
-      onUpdate: () => {
-        countEl.textContent = String(Math.floor(counter.val)).padStart(2, '0');
-      }
-    })
-    .to(countEl, { opacity: 0, duration: 0.35 }, '-=0.1')
-    .to(mark, { opacity: 1, duration: 0.5 }, '-=0.1')
-    .to(word, { opacity: 1, letterSpacing: '0.35em', duration: 0.6 }, '-=0.1')
-    .to(sub, { opacity: 1, duration: 0.5 }, '-=0.2')
-    .to({}, { duration: 0.5 }) // brief hold so the mark can be read
-    .to(curtain, {
-      yPercent: -100,
-      duration: 0.9,
-      ease: 'power4.inOut'
-    });
+tl.to(counter, {
+  val: 100,
+  duration: 2, // Counter takes exactly 2 seconds
+  ease: 'power2.inOut',
+  onUpdate: () => {
+    countEl.textContent = String(Math.floor(counter.val)).padStart(2, '0');
+  }
+})
+.to(countEl, {
+  opacity: 0,
+  duration: 0.3
+}, '-=0.1')
+
+.to(mark, {
+  opacity: 1,
+  duration: 0.4
+}, '-=0.1')
+
+.to(word, {
+  opacity: 1,
+  letterSpacing: '0.35em',
+  duration: 0.5
+}, '-=0.1')
+
+.to(sub, {
+  opacity: 1,
+  duration: 0.4
+}, '-=0.2')
+
+.to({}, {
+  duration: 2 // Show logo + text for 2 full seconds
+})
+
+.to(curtain, {
+  yPercent: -100,
+  duration: 0.8,
+  ease: 'power4.inOut'
+});
   }
 
   document.addEventListener('DOMContentLoaded', runLoader);

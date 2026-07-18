@@ -52,13 +52,66 @@
   <p class="reader-intro-line">SOME DREAMS ARE SEEN WITH CLOSED EYES.<br>OTHERS WAIT FOR US TO WAKE.</p>
 </div>
 
+<!-- ============ EDITION SELECTOR ============ -->
+<div class="edition-select" id="edition-select" aria-hidden="true">
+  <div class="edition-select-inner">
+    <span class="edition-select-eyebrow">CHOOSE YOUR READING EXPERIENCE</span>
+    <h2 class="edition-select-title">KHWAAB</h2>
+
+    <div class="edition-cards">
+      <article class="edition-card" data-edition="standard">
+        <div class="edition-card-head">
+          <span class="edition-card-label">EDITION 01</span>
+          <h3 class="edition-card-name">STANDARD EDITION</h3>
+        </div>
+        <p class="edition-card-desc">Optimized for mobile devices and slower internet connections.</p>
+        <ul class="edition-card-features">
+          <li>Fast Loading</li>
+          <li>Lower File Size</li>
+          <li>Mobile Friendly</li>
+        </ul>
+        <!-- ============================================================ -->
+        <!-- ⬇⬇⬇ PASTE STANDARD EDITION PDF LINK/PATH INSIDE THE QUOTES ⬇⬇⬇ -->
+        <!-- Example: data-pdf-path="assets/comics/khwaab-standard.pdf" -->
+        <!-- ============================================================ -->
+        <button class="edition-card-btn magnetic" data-cursor="" data-pdf-path="assets/comics/khwaab-standard.pdf">READ STANDARD EDITION</button>
+      </article>
+
+      <article class="edition-card edition-card--recommended" data-edition="upscaled">
+        <span class="edition-card-badge">RECOMMENDED</span>
+        <div class="edition-card-head">
+          <span class="edition-card-label">EDITION 02</span>
+          <h3 class="edition-card-name">UPSCALED EDITION</h3>
+        </div>
+        <p class="edition-card-desc">Highest artwork quality for the best reading experience. Recommended for Desktop and Tablets.</p>
+        <ul class="edition-card-features">
+          <li>High Resolution</li>
+          <li>Best Artwork Quality</li>
+          <li>Premium Experience</li>
+        </ul>
+        <!-- ============================================================ -->
+        <!-- ⬇⬇⬇ PASTE UPSCALED EDITION PDF LINK/PATH INSIDE THE QUOTES ⬇⬇⬇ -->
+        <!-- Example: data-pdf-path="assets/comics/khwaab-upscaled.pdf" -->
+        <!-- ============================================================ -->
+        <button class="edition-card-btn magnetic" data-cursor="" data-pdf-path="assets/comics/khwaab-upscaled.pdf">READ UPSCALED EDITION</button>
+      </article>
+    </div>
+  </div>
+
+  <div class="edition-select-transition" id="edition-select-transition" aria-hidden="true">
+    <span>PREPARING YOUR READING ROOM…</span>
+  </div>
+</div>
+
 <main>
 
   <!-- ============ READING STAGE ============ -->
-  <section class="reader-stage" id="reader-stage">
+  <section class="reader-stage" id="reader-stage" hidden>
 
     <div class="reader-canvas-zone" id="reader-canvas-zone">
-      <button class="reader-edge reader-edge--prev" id="reader-edge-prev" aria-label="Previous page" tabindex="-1"></button>
+      <button class="reader-edge reader-edge--prev" id="reader-edge-prev" aria-label="Previous page" tabindex="-1">
+        <span class="reader-edge-arrow" aria-hidden="true">‹</span>
+      </button>
 
       <div class="reader-canvas-frame" id="reader-canvas-frame">
         <canvas id="reader-canvas" aria-label="KHWAAB comic page"></canvas>
@@ -66,16 +119,26 @@
         <div class="reader-fallback" id="reader-fallback" hidden>
           <p class="reader-fallback-title">THE DREAM IS STILL LOADING.</p>
           <p class="reader-fallback-sub">Releasing on 18th July 2026</p>
-          <a href="index.html" class="btn btn--outline magnetic" data-transition>RETURN TO HOME</a>
+          <div class="reader-fallback-actions">
+            <button class="btn btn--outline magnetic" id="reader-retry" data-cursor="">TRY AGAIN</button>
+            <a href="index.html" class="btn btn--outline magnetic" data-cursor="" data-transition>RETURN TO HOME</a>
+          </div>
         </div>
       </div>
 
-      <button class="reader-edge reader-edge--next" id="reader-edge-next" aria-label="Next page" tabindex="-1"></button>
+      <button class="reader-edge reader-edge--next" id="reader-edge-next" aria-label="Next page" tabindex="-1">
+        <span class="reader-edge-arrow" aria-hidden="true">›</span>
+      </button>
+
+      <!-- Mobile fullscreen only: replaces the whole bottom control bar
+           with a single exit action, so fullscreen shows just the page. -->
+      <button class="reader-exit-mobile" id="reader-exit-mobile" aria-label="Exit fullscreen">EXIT FULLSCREEN</button>
     </div>
 
-    <div class="reader-controls" id="reader-controls" aria-live="polite">
+    <div class="reader-controls" id="reader-controls">
+      <button class="reader-btn" id="reader-back" aria-label="Change edition">‹ CHANGE EDITION</button>
       <button class="reader-btn" id="reader-prev" aria-label="Previous page">‹ PREV</button>
-      <span class="reader-count"><span id="reader-current">01</span> / <span id="reader-total">—</span></span>
+      <span class="reader-count" aria-live="polite"><span id="reader-current">01</span> / <span id="reader-total">—</span></span>
       <button class="reader-btn" id="reader-next" aria-label="Next page">NEXT ›</button>
       <button class="reader-btn" id="reader-fullscreen" aria-label="Toggle fullscreen">FULLSCREEN</button>
       <a class="reader-btn" href="khwaab.html" data-transition>EXPLORE KHWAAB</a>

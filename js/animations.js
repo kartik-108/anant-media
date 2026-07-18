@@ -426,7 +426,7 @@ function openLightbox(index){
     ScrollTrigger.refresh();
   }
 
-  return { initAll };
+  return { initAll, initNav, initMobileMenu, initTextReveals, initMagnetic, initMediaFallback };
 })();
 
 // Expose animations module to main.js bootstrap

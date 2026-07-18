@@ -3,8 +3,9 @@
    Isolated from style.css / inner-pages.css. Reuses the same
    tokens (--black-deep, --white, --silver, --font-display,
    --font-serif, --ease-cinematic/--ease-soft, --nav-h) but
-   defines its own shapes: the intro overlay, the reading
-   stage, the pill-shaped control bar, and the progress line.
+   defines its own shapes: the intro overlay, the edition
+   selector, the reading stage, the pill-shaped control bar,
+   and the progress line.
    ========================================================= */
 
 /* ---------- Intro overlay ----------
@@ -43,7 +44,7 @@
   position:relative;
   min-height:100vh;
   display:flex;flex-direction:column;justify-content:center;
-  padding:calc(var(--nav-h) + 2rem) 4vw 2.5rem;
+  padding:calc(var(--nav-h)) 0 0;
   opacity:0;
 }
 
@@ -51,18 +52,25 @@
   position:relative;
   display:flex;align-items:center;justify-content:center;
   flex:1;min-height:0;
+  /* Let our own JS-driven swipe handle horizontal gestures instead of
+     the browser (stops iOS Safari's edge-swipe-back from hijacking a
+     page-turn swipe near the left/right edge of the frame). */
+  touch-action:pan-y;
+  overscroll-behavior-x:contain;
 }
 .reader-canvas-frame{
   position:relative;
   width:100%;
-  max-width:min(78vw,760px);
-  max-height:76vh;
+  max-width:100vw;
+  max-height:calc(100vh - var(--nav-h));
   aspect-ratio:2/3;
   background:radial-gradient(ellipse at center, #121116 0%, #050505 78%);
-  border:1px solid rgba(255,255,255,0.07);
-  box-shadow:0 60px 120px -30px rgba(0,0,0,0.8);
+  border:none;
+  box-shadow:none;
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
+  touch-action:pan-y;
+  overscroll-behavior-x:contain;
 }
 #reader-canvas{
   max-width:100%;
@@ -77,6 +85,13 @@
   text-transform:uppercase;
 }
 .reader-loading[hidden]{display:none;}
+@keyframes reader-pulse{
+  0%,100%{opacity:0.45;}
+  50%{opacity:1;}
+}
+.reader-loading span{
+  animation:reader-pulse 1.6s ease-in-out infinite;
+}
 
 .reader-fallback{
   position:absolute;inset:0;
@@ -89,6 +104,9 @@
   font-size:clamp(1.2rem,2.4vw,1.6rem);margin:0;
 }
 .reader-fallback-sub{font-size:0.85rem;color:var(--silver);margin:0 0 0.5rem;}
+.reader-fallback-actions{
+  display:flex;align-items:center;gap:0.9rem;flex-wrap:wrap;justify-content:center;
+}
 
 /* Invisible left/right click zones for previous/next */
 .reader-edge{
@@ -96,26 +114,71 @@
   background:transparent;border:none;
   cursor:none;
   z-index:2;
+  display:flex;align-items:center;
 }
-.reader-edge--prev{left:0;}
-.reader-edge--next{right:0;}
+.reader-edge--prev{left:0;justify-content:flex-start;}
+.reader-edge--next{right:0;justify-content:flex-end;}
+.reader-edge:disabled{pointer-events:none;}
 
-/* ---------- Control bar ---------- */
+/* Visible chevrons — off by default (the edge is just an invisible
+   tap zone normally). Only switched on for mobile fullscreen, where
+   the full control bar is replaced by these + the single exit button. */
+.reader-edge-arrow{
+  display:none;
+  width:2.4rem;height:2.4rem;margin:0 0.7rem;
+  align-items:center;justify-content:center;
+  border:1px solid rgba(255,255,255,0.25);
+  border-radius:50%;
+  background:rgba(8,8,10,0.45);
+  color:var(--white);
+  font-family:var(--font-display);
+  font-size:1.1rem;
+  pointer-events:none;
+}
+.reader-edge:disabled .reader-edge-arrow{opacity:0.25;}
+
+/* Single fullscreen-exit action shown in place of the full bar on
+   mobile — see the media queries in the fullscreen section below. */
+.reader-exit-mobile{
+  display:none;
+  position:absolute;
+  top:calc(1rem + env(safe-area-inset-top, 0px));
+  right:calc(1rem + env(safe-area-inset-right, 0px));
+  z-index:8;
+  font-family:var(--font-display);
+  font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--white);
+  background:rgba(8,8,10,0.55);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:100px;
+  padding:0.55rem 0.9rem;
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+
+/* ---------- Control bar ----------
+   Floats directly over the comic (not in normal document flow)
+   so the PDF can fill the entire stage. Fully disappears after
+   a short idle period and reappears on any interaction. */
 .reader-controls{
+  position:absolute;
+  left:50%;
+  bottom:calc(2rem + env(safe-area-inset-bottom, 0px));
+  transform:translateX(-50%);
   display:flex;align-items:center;justify-content:center;
   gap:2rem;flex-wrap:wrap;
-  width:fit-content;
-  margin:2.2rem auto 0;
+  width:fit-content;max-width:92vw;
   padding:1rem 1.8rem;
   border:1px solid rgba(255,255,255,0.1);
   border-radius:100px;
   background:rgba(8,8,10,0.55);
   -webkit-backdrop-filter: blur();
   backdrop-filter:blur(14px);
-  opacity:1;
-  transition:opacity .5s var(--ease-soft);
+  z-index:6;
+  opacity:1;pointer-events:auto;
+  transition:opacity .4s var(--ease-soft);
 }
-.reader-controls.is-idle{opacity:0.18;}
+.reader-controls.is-idle{opacity:0;pointer-events:none;}
 .reader-btn{
   font-family:var(--font-display);
   font-size:0.66rem;
@@ -151,7 +214,51 @@
   margin:1.2rem 0 0;text-transform:uppercase;
 }
 
-/* ---------- Responsive ---------- */
+/* ---------- Fullscreen mode ----------
+   Fullscreen is requested on the whole document (see reader.js),
+   so the custom cursor keeps working. This class is toggled on
+   <html> and <body> to: kill all scrolling so it's just the page
+   on screen, hide the site's own header/footer chrome, and keep
+   the control bar out of the way until the cursor comes looking
+   for it. */
+html.reader-fullscreen-active,
+body.reader-fullscreen-active{
+  overflow:hidden;
+  height:100%;
+  overscroll-behavior:none;
+}
+.reader-fullscreen-active .nav,
+.reader-fullscreen-active .site-footer,
+.reader-fullscreen-active .reader-progress-line{
+  display:none;
+}
+.reader-fullscreen-active .reader-stage{
+  padding:0;
+  min-height:100vh;
+  height:100vh;
+  overflow:hidden;
+}
+.reader-fullscreen-active .reader-canvas-zone{
+  overflow:hidden;
+}
+.reader-fullscreen-active .reader-canvas-frame{
+  max-width:96vw;
+  max-height:96vh;
+}
+
+/* Desktop/tablet: the bar is invisible by default and only fades in
+   once the cursor is near the bottom edge (or actually over the bar) —
+   see the mousemove hot-zone check in reader.js. */
+.reader-fullscreen-active .reader-controls{
+  opacity:0;
+  pointer-events:none;
+}
+.reader-fullscreen-active .reader-controls.is-hot{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* ---------- Responsive (reading stage) ---------- */
 @media (max-width:1024px){
   .reader-canvas-frame{max-width:86vw;}
 }
@@ -161,7 +268,168 @@
   .reader-controls{gap:1.1rem;padding:0.85rem 1.2rem;}
   .reader-edge{width:32%;}
 }
+/* Short/landscape phones: the 62vh cap from the portrait rule above
+   leaves the page tiny once the on-screen keyboard/UI chrome is gone,
+   so give it more room to breathe when width > height. */
+@media (max-width:900px) and (orientation:landscape){
+  .reader-canvas-frame{max-height:80vh;}
+  .reader-stage{padding-top:calc(var(--nav-h) + 0.4rem);}
+}
+/* Very small phones: six items in a single pill wrap into a messy
+   multi-row shape. Let the secondary "Explore Khwaab" link drop to
+   its own full-width row and soften the radius so the wrap reads as
+   intentional rather than broken — no new colors, just layout. */
+/* Mobile fullscreen: no bottom bar at all — just the page, side
+   arrows to turn it, and one button to get back out. */
+@media (max-width:768px){
+  .reader-fullscreen-active .reader-controls,
+  .reader-fullscreen-active .reader-controls.is-hot{
+    display:none;
+  }
+  .reader-fullscreen-active .reader-exit-mobile{
+    display:block;
+  }
+  .reader-fullscreen-active .reader-edge-arrow{
+    display:flex;
+  }
+}
+
+@media (max-width:480px){
+  .reader-controls{
+    border-radius:22px;
+    gap:0.65rem 1rem;
+    row-gap:0.55rem;
+    padding:0.8rem 1rem;
+  }
+  #reader-back{
+    padding-right:0.9rem;
+    margin-right:0;
+    border-right:1px solid rgba(255,255,255,0.12);
+  }
+  .reader-controls > a.reader-btn{
+    flex-basis:100%;
+    text-align:center;
+    order:10;
+    padding-top:0.6rem;
+    margin-top:0.1rem;
+    border-top:1px solid rgba(255,255,255,0.1);
+  }
+  .reader-fallback-actions{flex-direction:column;width:100%;}
+  .reader-fallback-actions .btn{width:100%;}
+}
 @media (prefers-reduced-motion: reduce){
   .reader-intro-eyebrow,.reader-intro-title,.reader-intro-subtitle,.reader-intro-line{opacity:1;}
   .reader-stage{opacity:1;}
+  .reader-loading span{animation:none;}
+}
+
+/* =========================================================
+   ---------- Edition selector ----------
+   Sits between the intro overlay and the reading stage.
+   Same dark / editorial identity: no gradients beyond the
+   existing radial card background, no glassmorphism, no
+   bright colors, no new fonts.
+   ========================================================= */
+.edition-select{
+  position:fixed;inset:0;
+  z-index:9500;
+  background:var(--black-deep);
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  padding:calc(var(--nav-h) + 2rem) 5vw 4rem;
+  opacity:0;visibility:hidden;pointer-events:none;
+}
+.edition-select.is-visible{opacity:1;visibility:visible;pointer-events:auto;}
+.edition-select-inner{
+  width:100%;max-width:1080px;text-align:center;
+  margin:0 auto;
+  min-height:calc(100vh - var(--nav-h) - 6rem);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.edition-select-eyebrow{
+  display:block;font-size:0.7rem;letter-spacing:0.3em;color:var(--silver);
+  text-transform:uppercase;margin-bottom:1rem;opacity:0;
+}
+.edition-select-title{
+  font-family:var(--font-display);
+  font-size:clamp(2rem,6vw,3.4rem);
+  font-weight:500;letter-spacing:-0.01em;
+  margin:0 0 3.2rem;opacity:0;
+}
+.edition-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;}
+.edition-card{
+  position:relative;text-align:left;
+  padding:2.4rem 2rem 2.2rem;
+  border:1px solid rgba(255,255,255,0.1);
+  background:radial-gradient(ellipse at top, #121116 0%, #050505 78%);
+  display:flex;flex-direction:column;
+  opacity:0;
+  transition:border-color .4s var(--ease-soft);
+}
+.edition-card:hover{border-color:rgba(255,255,255,0.28);}
+.edition-card--recommended{border-color:rgba(255,255,255,0.22);}
+.edition-card-badge{
+  position:absolute;top:1.4rem;right:2rem;
+  font-size:0.6rem;letter-spacing:0.2em;color:var(--black-deep);
+  background:var(--white);padding:0.35rem 0.7rem;text-transform:uppercase;
+}
+.edition-card-label{
+  display:block;font-size:0.65rem;letter-spacing:0.2em;color:var(--silver-dim);
+  text-transform:uppercase;margin-bottom:0.6rem;
+}
+.edition-card-name{
+  font-family:var(--font-serif);font-style:italic;font-weight:400;
+  font-size:clamp(1.3rem,2.4vw,1.7rem);margin:0 0 1rem;
+}
+.edition-card-desc{font-size:0.85rem;line-height:1.6;color:var(--silver);margin:0 0 1.4rem;}
+.edition-card-features{list-style:none;margin:0 0 2rem;padding:0;font-size:0.75rem;letter-spacing:0.04em;color:var(--silver);}
+.edition-card-features li{padding:0.5rem 0;border-top:1px solid rgba(255,255,255,0.07);}
+.edition-card-features li:first-child{border-top:none;}
+.edition-card-btn{
+  margin-top:auto;font-family:var(--font-display);
+  font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--white);background:none;border:1px solid rgba(255,255,255,0.3);
+  padding:0.9rem 1.4rem;
+  transition:background .3s var(--ease-soft), color .3s var(--ease-soft);
+}
+.edition-card-btn:hover{background:var(--white);color:var(--black-deep);}
+
+.edition-select-transition{
+  position:fixed;inset:0;z-index:9700;background:var(--black-deep);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .4s var(--ease-soft);
+}
+.edition-select-transition.is-visible{opacity:1;visibility:visible;}
+.edition-select-transition span{font-size:0.72rem;letter-spacing:0.28em;color:var(--silver);text-transform:uppercase;}
+
+/* Fix: the edition selector / transition overlays sit at a high
+   z-index (9500 / 9700) which was rendering above the site's
+   custom cursor, making it disappear on this page. Cursor must
+   always stay on top. */
+.cursor-dot, .cursor-outline{ z-index:9999; }
+
+/* Small divider so "CHANGE EDITION" reads as a separate action
+   from the page-turn controls, without touching existing
+   .reader-btn styling */
+#reader-back{
+  padding-right:1.6rem;
+  margin-right:0.4rem;
+  border-right:1px solid rgba(255,255,255,0.12);
+}
+
+/* Best-effort content protection (frontend-only, never fully bulletproof) */
+#reader-canvas, .reader-canvas-frame{
+  -webkit-user-select:none;user-select:none;
+  -webkit-user-drag:none;
+}
+@media print{
+  .reader-stage{display:none !important;}
+}
+
+/* ---------- Responsive (edition selector) ---------- */
+@media (max-width:768px){
+  .edition-cards{grid-template-columns:1fr;}
+  .edition-select{padding:calc(var(--nav-h) + 1.2rem) 5vw 5rem;}
+  .edition-select-inner{min-height:calc(100vh - var(--nav-h) - 4rem);}
 }
