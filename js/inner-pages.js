@@ -83,7 +83,7 @@
   /* ---------- Rhythm-frame parallax ----------
      Same technique as the homepage gallery: alternating
      speeds on the media layer inside each .rhythm-frame /
-     .chamber-media, driven by scroll position.*/
+     .chamber-media, driven by scroll position.
   function initRhythmParallax(){
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
     const frames = document.querySelectorAll('.rhythm-frame, .chamber-media');
@@ -97,7 +97,7 @@
         scrollTrigger: { trigger: frame, start: 'top bottom', end: 'bottom top', scrub: true }
       });
     });
-  }
+  } */
 
   /* ---------- Page entry timeline ----------
      Runs once per page load (not gated by sessionStorage —
